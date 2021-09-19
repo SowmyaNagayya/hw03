@@ -3,9 +3,9 @@
 
 var generateBtn = document.querySelector("#generate");
 
-var numberOfCharacters= 0;
+var numberOfCharacters= 8;
 var specialCharAllowed= "!@#$%^&*(){}[]=<>/,.";
-var numbersAllowed= 0123456789;
+var numbersAllowed= "0123456789";
 var lowerCaseLetters="abcdefghijklmnopqrstuvwxyz";
 var upperCaseLetters= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -18,7 +18,8 @@ function getRandomSpecialCharacters() {
 }
 
 function getRandomNumbers() {
-  var randomNum= numbersAllowed[Math.floor(Math.random() * numbersAllowed)];
+  var randomNum= numbersAllowed[Math.floor(Math.random() * numbersAllowed.length)];
+  console.log(randomNum);
   return randomNum;
 }
 
@@ -32,22 +33,103 @@ function getRandomUpperLetters() {
   return upperCL;
 }
 
+var randomFunction={ 
+  specialChar: getRandomSpecialCharacters(),
+  randomNum: getRandomNumbers(),
+  lowerCL: getRandomlowerLetters(),
+  upperCL: getRandomUpperLetters()
+}
+
+console.log(randomFunction.specialChar);
+console.log(randomFunction.randomNum);
+console.log(randomFunction.lowerCL);
+console.log(randomFunction.upperCL);
 
 function askHowManyCharacters(){
+  var answer= window.prompt("How Many Characters");
+  if(answer>=8 && answer<=128){
+        return answer;
+  }else{
+    window.prompt("Pick a Number between 8 and 128");
+  }
 
 }
 
+function askSpecialCharacters(){
+  var answer1= window.confirm("Do you Want Special Characters")
+      return answer1;
+  }
+
+
+
+function askNumbersAllowed(){
+  var answer2= window.confirm("Do you Want Numbers")
+    return answer2;
+  }
+
+
+
+function askLowerCL(){
+  var answer3= window.confirm("Do you Want Characters in Lower Case")
+    return answer3;
+  }
+
+
+
+function askUpperCL(){
+  var answer4= window.confirm("Do you Want Characters in Upper Case")
+    return answer4;
+  }
 
 
 
 
-/*function generatePassword(){
-  var finalPassword="";
-  var numberCharacters= askHowManyCharters()
+
+
+
+
+function generatePassword(){
+  var finalPassword=""
+  var numberCharacters= askHowManyCharacters();
+  var specialCharacters= askSpecialCharacters();
+  var numbers= askNumbersAllowed();
+  var lowerecase= askLowerCL();
+  var uppercase= askUpperCL();
+
+  var listOfPotentialCharacters= "";
+  if(specialCharacters)
+  {
+    listOfPotentialCharacters= listOfPotentialCharacters.concat(specialCharAllowed);
+  }
+
+  if(numbers)
+  {
+    listOfPotentialCharacters= listOfPotentialCharacters.concat(numbersAllowed);
+  }
+
+  if(lowerecase)
+  {
+    listOfPotentialCharacters= listOfPotentialCharacters.concat(lowerCaseLetters);
+  }
+
+  if(uppercase)
+  {
+    listOfPotentialCharacters= listOfPotentialCharacters.concat(upperCaseLetters);
+  }
+
+ for(i=0;i<=numberCharacters;i++)
+  {
+   finalPassword= listOfPotentialCharacters[Math.floor(Math.random()*listOfPotentialCharacters.length)];
+
+  }
 
 
   return finalPassword;
 }
+
+
+
+
 
 // Write password to the #password input
 function writePassword() {
@@ -59,4 +141,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);*/
+generateBtn.addEventListener("click", writePassword);
