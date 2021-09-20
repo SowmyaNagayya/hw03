@@ -3,14 +3,14 @@
 
 var generateBtn = document.querySelector("#generate");
 
-var numberOfCharacters= 8;
+var numberOfCharacters= 0;
 var specialCharAllowed= "!@#$%^&*(){}[]=<>/,.";
 var numbersAllowed= "0123456789";
 var lowerCaseLetters="abcdefghijklmnopqrstuvwxyz";
 var upperCaseLetters= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
-/*Random Function*/
+/*Generating Random Function*/
 
 function getRandomSpecialCharacters() {
   var specialChar= specialCharAllowed[Math.floor(Math.random() * specialCharAllowed.length)];
@@ -19,7 +19,6 @@ function getRandomSpecialCharacters() {
 
 function getRandomNumbers() {
   var randomNum= numbersAllowed[Math.floor(Math.random() * numbersAllowed.length)];
-  console.log(randomNum);
   return randomNum;
 }
 
@@ -33,6 +32,7 @@ function getRandomUpperLetters() {
   return upperCL;
 }
 
+/*Stores Random Values in randomFunction*/
 var randomFunction={ 
   specialChar: getRandomSpecialCharacters(),
   randomNum: getRandomNumbers(),
@@ -40,11 +40,12 @@ var randomFunction={
   upperCL: getRandomUpperLetters()
 }
 
-console.log(randomFunction.specialChar);
+/*console.log(randomFunction.specialChar);
 console.log(randomFunction.randomNum);
 console.log(randomFunction.lowerCL);
-console.log(randomFunction.upperCL);
+console.log(randomFunction.upperCL);*/
 
+/* Asking propmt for Confirmation*/
 function askHowManyCharacters(){
   var answer= window.prompt("How Many Characters");
   if(answer>=8 && answer<=128){
@@ -60,42 +61,31 @@ function askSpecialCharacters(){
       return answer1;
   }
 
-
-
 function askNumbersAllowed(){
   var answer2= window.confirm("Do you Want Numbers")
     return answer2;
   }
-
-
 
 function askLowerCL(){
   var answer3= window.confirm("Do you Want Characters in Lower Case")
     return answer3;
   }
 
-
-
 function askUpperCL(){
   var answer4= window.confirm("Do you Want Characters in Upper Case")
     return answer4;
   }
 
-
-
-
-
-
-
-
+/*Generating Password*/
 function generatePassword(){
   var finalPassword=""
   var numberCharacters= askHowManyCharacters();
   var specialCharacters= askSpecialCharacters();
   var numbers= askNumbersAllowed();
-  var lowerecase= askLowerCL();
+  var lowerecase= askLowerCL(); 
   var uppercase= askUpperCL();
 
+  /* List Of Potential Characters*/
   var listOfPotentialCharacters= "";
   if(specialCharacters)
   {
@@ -117,16 +107,16 @@ function generatePassword(){
     listOfPotentialCharacters= listOfPotentialCharacters.concat(upperCaseLetters);
   }
 
- for(i=0;i<=numberCharacters;i++)
+ var pswdGen="";
+ for(i=0;i<numberCharacters;i++)
   {
    finalPassword= listOfPotentialCharacters[Math.floor(Math.random()*listOfPotentialCharacters.length)];
-
+   pswdGen = pswdGen + finalPassword ; 
   }
 
 
-  return finalPassword;
+  return pswdGen;
 }
-
 
 
 
