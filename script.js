@@ -10,70 +10,49 @@ var lowerCaseLetters="abcdefghijklmnopqrstuvwxyz";
 var upperCaseLetters= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
-/*Generating Random Function*/
-
-function getRandomSpecialCharacters() {
-  var specialChar= specialCharAllowed[Math.floor(Math.random() * specialCharAllowed.length)];
-  return specialChar;
-}
-
-function getRandomNumbers() {
-  var randomNum= numbersAllowed[Math.floor(Math.random() * numbersAllowed.length)];
-  return randomNum;
-}
-
-function getRandomlowerLetters() {
-  var lowerCL= lowerCaseLetters[Math.floor(Math.random() * lowerCaseLetters.length)];
-  return lowerCL;
-}
-
-function getRandomUpperLetters() {
-  var upperCL= upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)];
-  return upperCL;
-}
-
-/*Stores Random Values in randomFunction*/
-var randomFunction={ 
-  specialChar: getRandomSpecialCharacters(),
-  randomNum: getRandomNumbers(),
-  lowerCL: getRandomlowerLetters(),
-  upperCL: getRandomUpperLetters()
-}
-
-/*console.log(randomFunction.specialChar);
-console.log(randomFunction.randomNum);
-console.log(randomFunction.lowerCL);
-console.log(randomFunction.upperCL);*/
-
 /* Asking propmt for Confirmation*/
 function askHowManyCharacters(){
   var answer= window.prompt("How Many Characters");
+  
+  if (answer === false) {
+    return askHowManyCharacters();
+  }
+  
+  answer = parseInt(answer);
   if(answer>=8 && answer<=128){
-        return answer;
+    return answer;
   }else{
-    window.prompt("Pick a Number between 8 and 128");
+    askHowManyCharacters();
   }
 
 }
 
 function askSpecialCharacters(){
-  var answer1= window.confirm("Do you Want Special Characters")
+  var answer1= confirm("Do you Want Special Characters");
+  console.log(answer1);
       return answer1;
+      
   }
 
 function askNumbersAllowed(){
-  var answer2= window.confirm("Do you Want Numbers")
+  var answer2= confirm("Do you Want Numbers");
+  console.log(answer2);
     return answer2;
+    
   }
 
 function askLowerCL(){
-  var answer3= window.confirm("Do you Want Characters in Lower Case")
+  var answer3= confirm("Do you Want Characters in Lower Case");
+  console.log(answer3);
     return answer3;
+    
   }
 
 function askUpperCL(){
-  var answer4= window.confirm("Do you Want Characters in Upper Case")
+  var answer4= confirm("Do you Want Characters in Upper Case");
+  console.log(answer4);
     return answer4;
+    
   }
 
 /*Generating Password*/
@@ -85,8 +64,8 @@ function generatePassword(){
   var lowerecase= askLowerCL(); 
   var uppercase= askUpperCL();
 
-  /* List Of Potential Characters*/
-  var listOfPotentialCharacters= "";
+/* List Of Potential Characters*/
+var listOfPotentialCharacters= "";
   if(specialCharacters)
   {
     listOfPotentialCharacters= listOfPotentialCharacters.concat(specialCharAllowed);
