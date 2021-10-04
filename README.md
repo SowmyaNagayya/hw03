@@ -12,4 +12,9 @@ In How Many characters window if we click cancel button it keeps on asking How M
 
 
 
+## Screenshot of homepage
+
+![Here is a screen shot of the final page/homepage.](./assets/image/passwordgenerator.png)
+
+## Link to deployed page
 You can also refer to this [GitHub Pages](https://github.com/SowmyaNagayya/hw03).
